@@ -7,7 +7,7 @@ crossref:
   fig-prefix: Gráfico
 format:
   html:
-     code-fold: true
+     code-fold: false
      code-block-border-left: true
      code-block-bg: true
      code-summary: "Mostrar el código"
@@ -19,6 +19,10 @@ format:
      number-sections: true
      toc_float: true
      theme: cosmo
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
 editor: visual
 jupyter: python3
 self-contained: true
@@ -28,9 +32,23 @@ css: style.css
 
 ## Punto 1
 
+### Consigna
+
+> 1. Seleccioná un sitio web de la pestaña “Tradicionales” del documento con los comercios electrónicos a scrapear e inspecciona el código fuente. Guarda la precaución que seas el único que eligió ese sitio.
+
+### Respuesta
 Selecciono Easy, cuya web es https://www.easy.com.ar/.
 
 ## Punto 2
+
+### Consigna
+
+> 2. Luego identifica 3 tipos diferentes de etiquetas y respondepara cada una:
+   a. ¿Para qué se utiliza?
+   b. ¿Qué atributos posee?
+   c. ¿Qué característica brinda cada uno de los atributos observados?
+
+### Respuesta
 
 *Etiqueta*: **link**, línea 16 del código de fuente de la página
 
@@ -75,6 +93,14 @@ c)--  Ambos atributos brindan la posibilidad de meter datos personalizados en el
 
 ## Punto 3
 
+### Consigna
+
+> 3. Accedé al primer ejemplo de código HTML (muy sencillo) que hemos preparado para este taller y respondé:
+  a. ¿Qué elementos HTML posee?
+  b. ¿Qué atributos posee cada elemento?
+  c. ¿Qué característica brinda cada uno?
+
+### Respuesta
 a)-- html, head, meta charset=”utf-8″, title, style, body, h1, p, table, thead,tbody, tr, td, a, div y img.
 
 b)-- y c)
@@ -120,6 +146,12 @@ b)-- y c)
 
 ## Punto 4
 
+### Consigna
+
+> 4. Por fín, llegamos a trabajar con Python:
+   a. Instalá e importá la librería requests y descargá el código html.
+
+### Respuesta
 
 ```{python}
 #| classes: styled-output
@@ -148,13 +180,25 @@ print(html_bruto.prettify())
 
 ## Punto 5
 
-### a) Obtener el título del documento:
+### Consignas:
+
+> 5. Ahora vamos a explorar el contenido HTML de estos documentos.
+    a. Modifica el script anterior para obtener el título principal del documento y mostrarlo en pantalla.
+    b. Ahora, cargá la tabla en un DataFrame de la librería Pandas.
+    c. Iterá en los elementos <p> del contenido y mostralos en pantalla.
+    d. A continuación, quedate con los elementos <td> que sean de clase “marca” y mostrá en pantalla aquellos que terminen con la letra “o”.
+    e. Guarda la tabla de la página en un archivo xlsx. Tené en cuenta que el archivo sólo deberá tener dos columnas: tienda y sitio web.
+
+
+### Respuestas
+
+#### a) Obtener el título del documento:
 
 ```{python}
 print(html_bruto.find('title').get_text())
 ```
 
-### b) Cargar la tabla en un data.frame
+#### b) Cargar la tabla en un data.frame
 
 ```{python}
 import pandas as pd # importar pandas
@@ -179,7 +223,7 @@ df = pd.DataFrame({'tienda': nombre_lista, 'sitio_web' : enlaces_lista})
 ```
 
 
-### c) Iterar los elementos del elemento 'p'
+#### c) Iterar los elementos del elemento 'p'
 
 ```{python}
 elementos_p = html_bruto.find_all('p')
@@ -188,7 +232,7 @@ for i in range((len(elementos_p)-1),1):
                             print(elementos_p[i].get_text())
 ```
 
-### d) Elementos 'td' de clase marca y que terminan en 'o'
+#### d) Elementos 'td' de clase marca y que terminan en 'o'
 
 ```{python}
 filas_marca = html_bruto.find_all('td', class_='marca')
@@ -208,7 +252,7 @@ print(marca_que_cumplen_condicion)
 ```
 
 
-### e) Guardar tabla en excel
+#### e) Guardar tabla en excel
 
 ```{python}
 df.to_excel('Tabla_ejercitación_1.xlsx',index=False)
@@ -217,9 +261,18 @@ df.to_excel('Tabla_ejercitación_1.xlsx',index=False)
 
 ## Punto 6
 
+### Consigna
+
+> Prepará una muy breve presentación para explicar en 7’ al inicio del siguiente encuentro cuales son las características del sitio web que escogiste en el punto #1.
+
+### Respuesta
 Presentación oral
 
 ## Punto 7
 
+### Consigna
+>Por último, documenta todo tu trabajo en un repositorio GitHub y comparte el enlace al equipo docente por Slack hasta el día previo al siguiente encuentro.
+
+### Respuesta
 Documentado usando [Quarto](https://quarto.org/)
 
