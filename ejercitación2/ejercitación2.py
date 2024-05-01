@@ -45,8 +45,9 @@ data = {'Atributo': nombres_atributos,
 
 df = pd.DataFrame(data)
 
-print(df)
- 
+#print(df)
+
+print(df.to_string(index=False))
 
 
 #b)
@@ -95,7 +96,7 @@ ingresar_credenciales = driver.find_element(By.CSS_SELECTOR,'button')
 ingresar_credenciales.click()
 
 
-## Mostrar en consola la ifnormación que se ingresó en el formulario
+## Mostrar en consola la información que se ingresó en el formulario
 
 contenido_mostrado = driver.find_element(By.ID, "contenidoMostrado")
 
@@ -105,8 +106,8 @@ texto_ingresado_lista = []
 for texto in texto_ingresado:
    texto_ingresado_lista.append(texto.text)
    
-print(texto_ingresado_lista)
-
+for texto in texto_ingresado_lista:
+        print(texto)
 
 # Punto 2
 
